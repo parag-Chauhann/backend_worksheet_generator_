@@ -4,9 +4,43 @@ const cors = require('cors'); // Import CORS middleware
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const DefaultInput ="We have done the safety audit as per the BIS 14489, in plant, so I have observations which are observed during the site visit, now I want to make a worksheet that consists of the observations, elements (like electrical safety, people safety, human safety, machine safety, safety management system, fire safety, legal compliance, statuary requirement, housekeeping, chemical safety, etc. standard like NBC, factory rules 1948, good practices, Opportunity for improvement / Indian electricity rules. Indian state Factories rule etc , Professional and short recommendation, risk level High, medium, low and , Gemini I will provide you the observation please provide me the details which I asked  and Please provide professional observations the same meaning that I have provided and recommendations if possible provide some specific recommendation so that the report looks professional, ,please provided data in Only Object Format (and remove json word and remove ``` also) This is the observation -"
 
-app.use(express.json());
+// const DefaultInput ="done the safety audit as per the in plant so I have observations which are observed during the site visit now I want to make a worksheet that consists of the observations, elements (like electrical safety, people safety, human safety, machine safety, safety management system, fire safety, legal compliance, statuary requirement, housekeeping, chemical safety, etc. standard like NBC, factory rules 1948, good practices, Opportunity for improvement / Indian electricity rules. Indian state Factories rule etc , Professional and short recommendation, risk level High, medium, low and , Gemini I will provide you the observation please provide me the details which I asked  and Please provide professional observations the same meaning that I have provided and recommendations if possible provide some specific recommendation so that the report looks professional, ,please provided data in Only Object Format (and remove json word and remove ``` also) This is the observation -"
+
+const DefaultInput = `
+"We have done the safety audit as per the in plant, so I have observations which are observed during the site visit."
+
+Elements like :
+- Electrical Safety
+- People Safety
+- Human Safety
+- Machine Safety
+- Safety Management System
+- Fire Safety
+- Legal Compliance
+- Statutory Requirement
+- Housekeeping
+- Chemical Safety, etc . whhich is appliclable,
+
+Legal Standards like :
+  - NBC
+  - Factory Rules 1948
+  - Good Practices
+  - Opportunity for Improvement
+  - Indian Electricity Rules
+  - Indian State Factories Rule
+  - Indian statet rules
+
+Professional and Short Recommendation:
+
+Risk Level:
+- High
+- Medium
+- Low
+
+Please provide professional  and very good observations with professional recommendations tailored to the identified elements and legal standards. Ensure clear documentation of risk levels associated with each observation for effective risk management please provided data in Only Object Format (and remove json word and remove```` also This is the observation -. `;
+
+app.use(express.json());"t"
 app.use(cors()); // Enable CORS for all routes
 
 // Route to handle observation submission
