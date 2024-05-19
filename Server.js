@@ -4,26 +4,17 @@ var cors = require("cors");
 
 const corsOpts = {
   origin: '*',
-
-  methods: [
-    'GET',
-    'POST',
-  ],
-
-  allowedHeaders: [
-    'Content-Type',
-  ],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
 };
-
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Define your API key and model name
-const API_KEY = "AIzaSyAYF-mE9As3ItSTccL2o9Zg6jhUo_9bc34";
+const API_KEY = "AIzaSyD3lRkIWZohoZiD5VZrrBE-VzfAzEcTMLA";
 const MODEL_NAME = "gemini-1.0-pro";
 
-const DefaultInput = 'done the safety audit as per the BIS 14489, in the plant , so I have observations, now I want to make a worksheet which consists of the observations, elements (like electrical safety, people safety, human safety, machine safety, safety management system, fire safety, legal compliance, statuary requirement, housekeeping, chemical safety, ) Legal standards ( like NBC, factory rules 1948, good practices, Opportunity for improvement / Indian electricity rules. Indian State Factories rule etc.) Professional lenghty recommendation, risk level (High, medium, low) and risk level (if low - 4 , medium , 3, and high 2), AI I will provide you the observation please provide me the all details which I asked and Please provide professional observations (around 100 words) and recommendations (not less 100 word), and legal standard with there section number, element and risk rating  lease provide data in Only Object Format {observation: "string",element: "string", legalStandard_Name: "string", legalStandard_sectionNumber: "string", professionalRecommendation: "string", riskLevel: "string", riskRating: "string"} with key (camelCase) value pair (and remove JSON word and remove ```, ** also). This is the observation: ';
+const DefaultInput = 'done the safety audit as per the BIS 14489, in the plant , so I have observations, now I want to make a worksheet which consists of the observations, elements (like electrical safety, people safety, human safety, machine safety, safety management system, fire safety, legal compliance, statuary requirement, housekeeping, chemical safety, ) Legal standards ( like NBC, factory rules 1948, good practices, Opportunity for improvement / Indian electricity rules. Indian State Factories rule etc.) Professional lengthy recommendation, risk level (High, medium, low) and risk level (if low - 4 , medium , 3, and high 2), AI I will provide you the observation please provide me the all details which I asked and Please provide professional observations (around 100 words) and recommendations (not less 100 word), and legal standard with their section number, element and risk rating please provide data in Only Object Format {observation: "string", element: "string", legalStandard_Name: "string", legalStandard_sectionNumber: "string", professionalRecommendation: "string", riskLevel: "string", riskRating: "string"} with key (camelCase) value pair plase remove JSON word and remove ```, ** also or any special character. This is the observation: ';
 
 app.use(express.json());
 app.use(cors(corsOpts));
@@ -58,6 +49,7 @@ app.post('/chatgpt', async (req, res) => {
         const response = result.response.text();
         console.log("Response", response, typeof(response));
 
+        // Ensure the response is a valid JSON string before sending it to the client
         res.status(200).json({ response });
 
     } catch (error) {
