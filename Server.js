@@ -61,3 +61,7 @@ app.post('/chatgpt', async (req, res) => {
         res.status(500).json({ error: 'An error occurred' });
     }
 });
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
